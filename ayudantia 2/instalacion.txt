@@ -1,0 +1,73 @@
+GUÍA DE INSTALACIÓN: DOCKER DESKTOP EN WINDOWS 
+Ayudantía Big Data
+
+REQUISITOS PREVIOS:
+Tener la virtualización activada en la BIOS de tu equipo. Si al ejecutar
+los siguientes pasos recibes un error relacionado con virtualización,
+revisa cómo activarla aquí:
+https://support.microsoft.com/es-es/windows/habilitar-la-virtualización-en-windows-c5578302-6e43-4b4b-a449-8ced115f58e1
+
+
+PASO 1: INSTALAR WSL2 (SUBSISTEMA DE WINDOWS PARA LINUX)
+
+1. Busca "Windows PowerShell" en el menú de inicio de Windows.
+2. Haz clic derecho sobre él y selecciona "Ejecutar como administrador".
+3. Ejecuta el siguiente comando:
+   wsl --install
+
+4. Una vez terminado el proceso, reinicia el computador.
+
+--------------------------------------------------------------------
+PASO 2: CONFIGURACIÓN INICIAL DE LINUX
+--------------------------------------------------------------------
+1. Al reiniciar, se abrirá automáticamente una ventana de terminal (Ubuntu).
+2. Espera un minuto a que termine de desempaquetar los archivos.
+3. Te pedirá ingresar un nombre de usuario y contraseña nuevos:
+   - Escribe un nombre de usuario y presiona Enter.
+   - Escribe una contraseña y presiona Enter (por seguridad, los
+     caracteres no se mostrarán en pantalla mientras escribes; es normal).
+   - Confirma la contraseña presionando Enter nuevamente.
+
+--------------------------------------------------------------------
+PASO 3: INSTALAR DOCKER DESKTOP
+--------------------------------------------------------------------
+1. Descarga el instalador de Docker Desktop para Windows (opción x86_64 / AMD64)
+   desde la página oficial:
+   https://www.docker.com/products/docker-desktop/
+
+2. Ejecuta el archivo instalador descargado.
+3. Asegúrate de que la casilla "Use WSL 2 instead of Hyper-V" quede
+   marcada durante el proceso de instalación.
+4. Al finalizar la instalación, reinicia.
+
+--------------------------------------------------------------------
+PASO 4: COMPROBACIÓN DEL ENTORNO
+--------------------------------------------------------------------
+1. Abre la aplicación Docker Desktop desde el menú de inicio y espera
+   a que termine de iniciar (el ícono en la esquina inferior izquierda
+   debe quedar en verde o indicar "Engine running").
+
+2. Abre Windows PowerShell normal (no es necesario como administrador).
+
+3. Verifica el estado de WSL ejecutando:
+   wsl --status
+
+   (Debe mostrar "Default Version: 2").
+
+4. Comprueba que Docker responda:
+   docker --version
+
+5. Corre el contenedor de prueba oficial:
+   docker run hello-world
+
+Si en la pantalla aparece el mensaje "Hello from Docker!", todo está
+instalado y listo.
+
+PROBLEMAS FRECUENTES:
+
+- Si vas a ejecutar comandos directamente dentro de la consola de Ubuntu
+  y recibes el error "The command 'docker' could not be found":
+  1. Abre Docker Desktop.
+  2. Ve a Settings (ícono de engranaje) > Resources > WSL integration.
+  3. Activa la casilla de tu distribución (Ubuntu).
+  4. Haz clic en "Apply & Restart".
